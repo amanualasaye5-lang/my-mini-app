@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shark Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #001a33; /* ጠቆር ያለ ሰማያዊ */
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #003366;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 80%;
+        }
+        h1 { color: #00d4ff; }
+        button {
+            background: #00d4ff;
+            color: #001a33;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Shark App 🦈</h1>
+        <p id="user-greeting">በመጫን ላይ...</p>
+        <button onclick="tgAction()">ንካኝ!</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+
+        // የተጠቃሚውን ስም ማሳያ
+        const user = tg.initDataUnsafe?.user;
+        if (user) {
+            document.getElementById("user-greeting").innerText = "ሰላም " + user.first_name + "!";
+        } else {
+            document.getElementById("user-greeting").innerText = "ሰላም ሻርክ!";
+        }
+
+        function tgAction() {
+            tg.showAlert("አፑ በትክክል እየሰራ ነው! 🎉");
+        }
+    </script>
+</body>
+</html>
